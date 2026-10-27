@@ -49,6 +49,3 @@ py app.py
 - The service worker caches the app shell only. Backend operations, location, voice recognition and email still need connectivity and a running server.
 - SQLite is suitable for a prototype. For public multi-user production use, add authentication, per-user data isolation, retention/deletion policies, rate limiting, a durable job queue, and managed database/secret storage.
 
-## Deployment
-
-Use a Python web host such as Render. Push this folder to a **new, separate GitHub repository** (do not mix it into an unrelated project), create a Web Service from that repository, set build command `pip install -r requirements.txt`, start command `gunicorn app:app --workers 2 --threads 4 --timeout 30`, and configure `SECRET_KEY` plus SMTP environment variables in the host dashboard. A persistent disk is needed if SQLite data must survive redeploys; mount it and point the database path to that disk before production use. Use HTTPS for microphone/geolocation access. Do not commit `.env`, passwords or personal contact data.
